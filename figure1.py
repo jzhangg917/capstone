@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-# Define data
+# Data
 timestamps = [
     "March 22, 2018 08:30 AM", "March 22, 2018 10:00 AM", "March 22, 2018 12:30 PM", 
     "March 22, 2018 03:00 PM", "March 22, 2018 05:00 PM", "March 23, 2018 06:00 AM", 
@@ -8,46 +8,43 @@ timestamps = [
     "March 23, 2018 07:00 PM", "April 1, 2018 09:00 AM", "April 5, 2018 02:00 PM", 
     "May 15, 2018 03:00 PM"
 ]
+
+# Descriptions with six breaklines
 descriptions = [
-    "Municipal employees report sluggish system performance and inability to access specific files.",
-    "IT teams begin investigating system disruptions, discovering encrypted files across municipal systems.",
-    "Emergency alerts are issued to city departments, advising a shutdown of potentially affected systems.",
-    "IT teams confirm the attack as ransomware; encryption activity is traced to weak RDP credentials.",
-    "City officials are briefed on the attack, and emergency measures are discussed.",
-    "Atlanta publicly announces the ransomware attack and warns residents about disruptions in city services.",
-    "Public Wi-Fi at Hartsfield-Jackson Atlanta International Airport is disabled to prevent malware spread.",
-    "Key municipal systems, including police reporting and court scheduling, are declared non-operational.",
-    "A crisis command center is established to coordinate recovery efforts and public communications.",
-    "City leaders hold an emergency press conference to address public concerns and outline immediate response plans.",
-    "City leaders announce their refusal to pay the ransom, focusing on system restoration from backups.",
-    "Federal indictment of Iranian nationals responsible for the ransomware campaign is announced.",
-    "Recovery costs reach $17 million; efforts continue for system restoration and upgrades."
+    "Municipal employees \nreport sluggish\nsystem performance \nand inability to\naccess specific files.\n\n",
+    "IT teams begin \ninvestigating system \ndisruptions,\ndiscovering encrypted files\nacross municipal systems.\n\n",
+    "Emergency alerts \nare issued to \ncity departments,\nadvising a shutdown of\npotentially \naffected systems.\n\n",
+    "IT teams confirm \nthe attack as ransomware;\nencryption activity \nis traced to\nweak RDP credentials.\n\n",
+    "City officials \nare briefed on the attack\nand emergency measures are\ndiscussed \n\nto mitigate impact.\n\n",
+    "Atlanta publicly \nannounces the \nransomware attack\nand warns residents about\ndisruptions in city services.\n\n",
+    "Public Wi-Fi at \nHartsfield-Jackson Atlanta\nInternational Airport disabled to\nprevent malware spread.\n\n",
+    "Key municipal systems, \nincluding police\nreporting and \ncourt scheduling,\nare declared non-operational.\n\n",
+    "A crisis command center \nis established\nto coordinate recovery efforts\nand manage \npublic communications.\n\n",
+    "City leaders \nhold an emergency\n press conference\nto address public \nconcerns and\noutline immediate plans.\n\n",
+    "City leaders \nannounce their \nrefusal to\npay the ransom\n, focusing on\nsystem restoration from backups.\n\n",
+    "Federal indictment \nof Iranian nationals \nresponsible\nfor the ransomware campaign\nis announced.\n\n",
+    "Recovery costs \nreach $17 million;\nefforts continue for system\nrestoration and long-term upgrades.\n\n"
 ]
 
-# Create the figure and axis
-plt.figure(figsize=(30, 6))  # Adjust the figure width for a long horizontal timeline
+# Prepare data for plotting
+times = range(len(timestamps))  # X-axis positions
 
-# Plot the timeline
-for i, (timestamp, description) in enumerate(zip(timestamps, descriptions)):
-    plt.scatter(i, 0, color="blue", s=100)  # Points on the timeline
-    plt.text(
-        i, -0.2, timestamp, rotation=45, fontsize=8, ha="right", color="purple"
-    )  # Add timestamp below points
-    plt.text(
-        i, 0.2, description, fontsize=8, wrap=True, color="black", ha="center", va="bottom"
-    )  # Add descriptions above points
+# Adjust figure size and horizontal layout
+plt.figure(figsize=(50, 14))  # Extra wide and slightly taller figure
+plt.scatter(times, [1] * len(timestamps), color="blue", zorder=5, s=300)  # Larger blue dots
+plt.hlines(y=1, xmin=0, xmax=len(timestamps) - 1, color="gray", linestyles="solid")  # Solid timeline line
 
-# Draw a horizontal line for the timeline
-plt.plot(range(len(timestamps)), [0]*len(timestamps), color="gray", linestyle="--", linewidth=1)
+# Add labels and descriptions with closer spacing
+for i, (label, desc) in enumerate(zip(timestamps, descriptions)):
+    plt.text(i, 1.01, label, rotation=90, ha='center', fontsize=12, color='darkblue')  # Time labels closer to line
+    plt.text(i, 0.97, desc, ha='center', fontsize=10, bbox=dict(facecolor='white', alpha=0.8, edgecolor='gray'))  # Descriptions closer to line
 
-# Formatting
-plt.title("Expanded Timeline of Atlanta Ransomware Attack", fontsize=14)
-plt.yticks([])  # Remove y-axis
-plt.xticks([])  # Remove x-axis ticks
-plt.tight_layout()
+# Enhance overall plot appearance
+plt.title("Timeline of Atlanta Ransomware Attack", fontsize=20, pad=50)
+plt.axis("off")  # Turn off axes
 
 # Save the figure
-plt.savefig('/Users/jackyzhang/Downloads/Expanded_Timeline.png', dpi=300, bbox_inches="tight")
+plt.savefig('/Users/jackyzhang/Downloads/CAPSTONE/figure1.png', bbox_inches="tight")
 plt.close()
 
-print("Timeline saved successfully as 'Expanded_Timeline.png'.")
+print("Timeline with closer events and descriptions saved!")

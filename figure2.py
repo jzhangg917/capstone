@@ -37,10 +37,10 @@ costs = [17, 18.2, 11.5]  # Costs in millions USD
 # Plot Figure 4
 plt.figure(figsize=(10, 6))
 plt.bar(cities, costs, color=['blue', 'orange', 'green'])
-plt.title('Figure 4: Cost Comparisons of Ransomware Attacks')
+plt.title('Figure 3: Cost Comparisons of Ransomware Attacks')
 plt.xlabel('City')
 plt.ylabel('Recovery Costs (in Millions USD)')
-plt.savefig('/Users/jackyzhang/Downloads/CAPSTONE/Cost_Comparisons_Ransomware_Attacks.png')  # Updated file path
+plt.savefig('/Users/jackyzhang/Downloads/CAPSTONE/figure3.png')  # Updated file path
 plt.close()
 
 print("Figures saved successfully!")
